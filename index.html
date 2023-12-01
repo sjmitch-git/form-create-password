@@ -21,13 +21,17 @@
         title="Password must be 8-12 characters long and include at least one digit, one uppercase letter, and one symbol."
         required
       />
+      <p id="password-hint">
+        Password must be 8-12 characters long and include at least one digit, one uppercase letter,
+        and one symbol.
+      </p>
 
-      <progress value="0" max="100"></progress>
+      <progress value="0" max="100" id="passwordStrength"></progress>
 
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" required />
 
-      <button type="submit">Register</button>
+      <button type="submit" id="registerButton" disabled>Register</button>
     </form>
     <script src="./script.js"></script>
   </body>

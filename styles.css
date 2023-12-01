@@ -32,12 +32,46 @@ input {
   padding: 8px;
   margin-bottom: 16px;
   box-sizing: border-box;
+  border: solid thin #ddd;
+
+  &:required {
+    background-color: yellow;
+  }
+
+  &:focus {
+    background-color: initial;
+    outline: thin solid yellow;
+  }
+
+  &:valid {
+    outline: thin solid green;
+  }
+}
+
+input + p {
+  margin-top: -0.6rem;
+  font-size: 0.8rem;
 }
 
 progress {
   width: 100%;
   height: 20px;
   margin-bottom: 16px;
+}
+
+.danger::-webkit-progress-value,
+.danger {
+  background-color: red;
+}
+
+.warning::-webkit-progress-value,
+.warning {
+  background-color: orange;
+}
+
+.success::-webkit-progress-value,
+.success {
+  background-color: green;
 }
 
 button {
@@ -48,4 +82,10 @@ button {
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+
+  &:disabled {
+    cursor: default;
+    background-color: #7f827f;
+    color: rgb(26, 25, 25);
+  }
 }
