@@ -23,8 +23,13 @@ form {
 }
 
 label {
+  position: relative;
   display: block;
-  margin-bottom: 8px;
+
+  & span {
+    display: block;
+    margin-bottom: 8px;
+  }
 }
 
 input {
@@ -33,30 +38,73 @@ input {
   margin-bottom: 16px;
   box-sizing: border-box;
   border: solid thin #ddd;
+  border-radius: 2px;
+  font-size: 1rem;
 
   &:required {
     background-color: yellow;
+    border: solid thin red; /* Update border color on required */
   }
 
   &:focus {
-    background-color: initial;
-    outline: thin solid yellow;
+    background-color: lightcyan; /* Update background color on focus */
+    outline: thin solid blue;
   }
 
-  &:valid {
+  &:valid,
+  &:focus:valid {
+    background-color: initial;
     outline: thin solid green;
+    border-color: green;
+  }
+
+  &:invalid,
+  &:focus:invalid {
+    outline: thin solid red;
+    border-color: red; /* Update border color on invalid */
   }
 }
 
-input + p {
-  margin-top: -0.6rem;
+label::after {
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+label:has(input:valid)::after {
+  content: "\2714";
+  color: green;
+}
+
+label:has(input:invalid)::after {
+  content: "\26A0";
+  color: red;
+}
+
+#password {
+  margin-bottom: 1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.hint {
+  margin-top: -0.5rem;
   font-size: 0.8rem;
+}
+
+label:has(input:valid) .hint {
+  display: none;
 }
 
 progress {
   width: 100%;
-  height: 20px;
-  margin-bottom: 16px;
+  height: 0.5rem;
+  margin: 0 -1px 16px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #eee;
 }
 
 .danger::-webkit-progress-value,
@@ -82,6 +130,8 @@ button {
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+  text-transform: uppercase;
+  font-weight: 600;
 
   &:disabled {
     cursor: default;

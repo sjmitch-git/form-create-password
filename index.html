@@ -8,28 +8,53 @@
   </head>
   <body>
     <h1>User Registration</h1>
-    <form id="registrationForm">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
+    <form id="registrationForm" onsubmit="formsubmit(event)">
+      <label>
+        <span>Email:</span>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+          required
+        />
+        <p id="email-hint" class="hint">Enter a valid email address.</p>
+      </label>
 
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}"
-        title="Password must be 8-12 characters long and include at least one digit, one uppercase letter, and one symbol."
-        required
-      />
-      <p id="password-hint">
-        Password must be 8-12 characters long and include at least one digit, one uppercase letter,
-        and one symbol.
-      </p>
+      <label>
+        <span>Password:</span>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,12}"
+          title="Password must be 8-12 characters long and include at least one digit, one uppercase letter, and one symbol."
+          required
+        />
+        <progress
+          value="0"
+          max="100"
+          id="passwordStrength"
+          title="Password Strength"
+          class="danger"
+        ></progress>
 
-      <progress value="0" max="100" id="passwordStrength"></progress>
+        <p id="password-hint" class="hint">
+          Password must be 8-12 characters long and include at least one digit, one uppercase
+          letter, and one symbol.
+        </p>
+      </label>
 
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required />
+      <label>
+        <span>Confirm Password:</span>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          oninput="checkPasswordMatch()"
+          required
+        />
+      </label>
 
       <button type="submit" id="registerButton" disabled>Register</button>
     </form>
