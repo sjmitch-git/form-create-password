@@ -31,6 +31,23 @@ label {
     display: block;
     margin-bottom: 8px;
   }
+
+  &::after {
+    font-size: 18px;
+    position: absolute;
+    top: -2px;
+    right: 0;
+  }
+
+  &:has(input:valid)::after {
+    content: "\2714";
+    color: green;
+  }
+
+  &:has(input:invalid)::after {
+    content: "\26A0";
+    color: red;
+  }
 }
 
 input {
@@ -44,11 +61,11 @@ input {
 
   &:required {
     background-color: yellow;
-    border: solid thin red; /* Update border color on required */
+    border: solid thin red;
   }
 
   &:focus {
-    background-color: lightcyan; /* Update background color on focus */
+    background-color: lightcyan;
     outline: thin solid blue;
   }
 
@@ -62,25 +79,8 @@ input {
   &:invalid,
   &:focus:invalid {
     outline: thin solid red;
-    border-color: red; /* Update border color on invalid */
+    border-color: red;
   }
-}
-
-label::after {
-  font-size: 18px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-label:has(input:valid)::after {
-  content: "\2714";
-  color: green;
-}
-
-label:has(input:invalid)::after {
-  content: "\26A0";
-  color: red;
 }
 
 #password {
